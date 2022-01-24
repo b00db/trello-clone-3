@@ -1,0 +1,28 @@
+{
+  "name": "trello",
+  "version": "1.0.0",
+  "description": "Simple Trello Clone",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --exec babel-node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/b00db/trello-clone-3.git"
+  },
+  "author": "Boo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/b00db/trello-clone-3/issues"
+  },
+  "homepage": "https://github.com/b00db/trello-clone-3#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.12",
+    "@babel/node": "^7.16.8",
+    "@babel/preset-env": "^7.16.11",
+    "nodemon": "^2.0.15"
+  }
+}
