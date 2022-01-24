@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="./trello.css">
+        <script src="trello.js"></script>
+        <title>Trello Clone</title>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="listWrap">
+                <div class="list">
+                    <div class="listTitleWrap">
+                        <div class="title">list</div>
+                        <form class="titleEdit">
+                            <input class="listTitle" type="text" placeholder="list" autocomplete="off">
+                        </form>
+                    </div>
+                    <div class="cardWrap">
+                        <div class="cardContent">card1</div>
+                        <div class="cardContent">card2</div>
+                        <div class="cardContent">card3</div>
+                    </div>
+                    <div class="cardAddWrap">
+                        <div class="addLabel">+ Add another card</div>
+                        <form class="addCard" style="display: none;">
+                            <input class="addCardContent" type="text" placeholder="card" autocomplete="off">
+                            <button class="btn addCardBtn">Add Card</button>
+                            <span class="close addCardClose">&times</span>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="listAddWrap">
+                <div class="addLabel">+ Add another list</div>
+                <form class="addList">
+                    <input class="addListTitle" type="text" placeholder="list" autocomplete="off">
+                    <button class="btn addListBtn">Add List</button>
+                    <span class="close addListClose">&times</span>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
