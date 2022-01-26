@@ -47,8 +47,6 @@ function cardSubmit(event) {
     clickedInput.value ="";
     clickedItem.style.display = "none";
     clickedAddLabel.style.display = "block";
-    console.log(clickedItem);
-    console.log(cardWrap);
 }
 
 // addCardBtn 옆 x 누를 시 내용 지우고 form을 닫고 원래 addLabel을 노출
@@ -129,12 +127,9 @@ function listSubmit(event) {
     addListForm.style.display = 'none';
     listAddLabel.style.display = 'block';
 
-    list = document.querySelectorAll(".list");
-    for(let i=0; i<list.length; i++) {
-        list[i].querySelector(".addLabel").addEventListener("click", clickCardAddLabelEvent);
-        list[i].querySelector(".addCard").addEventListener("submit", cardSubmit);
-        list[i].querySelector(".close").addEventListener("click", clickAddCardCloseEvent);
-    }
+    cardAddLabel.addEventListener("click", clickCardAddLabelEvent);
+    addCardForm.addEventListener("submit", cardSubmit);
+    addCardClose.addEventListener("click", clickAddCardCloseEvent);
 }
 
 // addListBtn 옆 x 누를 시 내용 지우고 form을 닫고 원래 addLabel을 노출
