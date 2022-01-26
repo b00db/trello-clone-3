@@ -35,14 +35,20 @@ function clickCardAddLabelEvent(event) {
 // form에 입력한 내용을 card에 add
 function cardSubmit(event) {
     event.preventDefault();
-    const currentValue = addCardInput.value;
+    const clickedItem = event.target;
+    const clickedInput = clickedItem.querySelector(".addCardContent");
+    const clickedAddLabel = clickedItem.parentNode.querySelector(".addLabel");
+    const clickedCardWrap = clickedItem.parentNode.parentNode.querySelector(".cardWrap");
+    const currentValue = clickedInput.value;
     const div = document.createElement("div");
     div.className = "cardContent";
     div.innerText = currentValue;
-    cardWrap.appendChild(div);
-    addCardInput.value ="";
-    addCardForm.style.display = 'none';
-    cardAddLabel.style.display = 'block';
+    clickedCardWrap.appendChild(div);
+    clickedInput.value ="";
+    clickedItem.style.display = "none";
+    clickedAddLabel.style.display = "block";
+    console.log(clickedItem);
+    console.log(cardWrap);
 }
 
 // addCardBtn 옆 x 누를 시 내용 지우고 form을 닫고 원래 addLabel을 노출
