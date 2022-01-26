@@ -25,9 +25,11 @@ let listWrap = document.querySelector(".listWrap"),
 // .addLabel 클릭 시 입력할 수 있는 form을 생성
 function clickCardAddLabelEvent(event) {
     event.preventDefault();
-    cardAddLabel.style.display = 'none';
-    addCardForm.style.display = 'block';
-    addCardInput.focus();
+    const clickedItem = event.target;
+    const clickedAddCard = clickedItem.parentNode.querySelector(".addCard");
+    clickedItem.style.display = "none";
+    clickedAddCard.style.display = "block";
+    clickedAddCard.focus();
 }
 
 // form에 입력한 내용을 card에 add
@@ -46,9 +48,12 @@ function cardSubmit(event) {
 // addCardBtn 옆 x 누를 시 내용 지우고 form을 닫고 원래 addLabel을 노출
 function clickAddCardCloseEvent(event) {
     event.preventDefault();
-    addCardInput.value ="";
-    addCardForm.style.display = 'none';
-    cardAddLabel.style.display = 'block';
+    const clickedItem = event.target.parentNode;
+    const clickedAddLabel = clickedItem.parentNode.querySelector(".addLabel");
+    const clickedInput = clickedItem.parentNode.querySelector(".addCardContent");
+    clickedInput.value = "";
+    clickedItem.style.display = "none";
+    clickedAddLabel.style.display = "block";
 }
 
 // list 추가를 위한 코드
@@ -141,21 +146,6 @@ function init() {
     cardAddLabel.addEventListener("click", clickCardAddLabelEvent);
     addCardForm.addEventListener("submit", cardSubmit);
     addCardClose.addEventListener("click", clickAddCardCloseEvent);
-    /*
-    list = document.querySelectorAll(".list");
-    for(let i=0; i<list.length; i++) {
-        list[i].querySelector(".addLabel").addEventListener("click", clickCardAddLabelEvent);
-        list[i].querySelector(".addCard").addEventListener("submit", cardSubmit);
-        list[i].querySelector(".close").addEventListener("click", clickAddCardCloseEvent);
-    }
-    */
-    /*
-    [...document.querySelectorAll(".list")].forEach(function(cardAddLabel, addCardForm, addCardClose) {
-        cardAddLabel.addEventListener("click", clickCardAddLabelEvent);
-        addCardForm.addEventListener("submit", cardSubmit);
-        addCardClose.addEventListener("click", clickAddCardCloseEvent);
-    });
-    */
 }
 
 init();
