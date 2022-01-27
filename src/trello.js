@@ -56,8 +56,8 @@ function cardSubmit(event) {
 
     // card 관련 drag & drop 이벤트
     div.addEventListener("dragstart", onDragStart);
-    clickedCardWrap.addEventListener("dragover", onDragOver);
-    clickedCardWrap.addEventListener("drop", (e) => onDrop(e, clickedCardWrap));
+    cardWrap.addEventListener("dragover", onDragOver);
+    cardWrap.addEventListener("drop", (e) => onDrop(e, cardWrap));
 }
 
 // addCardBtn 옆 x 누를 시 내용 지우고 form을 닫고 원래 addLabel을 노출
