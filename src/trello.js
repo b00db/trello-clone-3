@@ -1,24 +1,27 @@
 // 카드관련 html tag 추출
+/*
 let cardWrap = document.querySelector(".cardWrap"),
     cardAddWrap = document.querySelector(".cardAddWrap"),
     cardAddLabel = cardAddWrap.querySelector(".addLabel"),
-    addCardForm = cardAddWrap.querySelector("form"),
-    addCardInput = addCardForm.querySelector("input"),
-    addCardBtn = addCardForm.querySelector("button"),
-    addCardClose = addCardForm.querySelector(".close");
-
+    addCardForm = document.querySelector(".addCard"),
+    addCardInput = document.querySelector(".addCardContent"),
+    addCardBtn = document.querySelector(".addCardBtn"),
+    addCardClose = document.querySelector(".addCardClose");
+*/
 // 리스트관련 html tag 추출
 let listWrap = document.querySelector(".listWrap"),
-    list = listWrap.querySelector(".list"),
-    listTitleWrap = list.querySelector(".listTitleWrap"),
-    title = listTitleWrap.querySelector(".title"),
-    titleEdit = listTitleWrap.querySelector("form"),
-    listTitle = titleEdit.querySelector("input"),
+    /*
+    list = document.querySelector(".list"),
+    listTitleWrap = document.querySelector(".listTitleWrap"),
+    title = document.querySelector(".title"),
+    titleEdit = document.querySelector(".titleEdit"),
+    listTitle = document.querySelector(".listTitle"),
+    */
     listAddWrap = document.querySelector(".listAddWrap"),
     listAddLabel = listAddWrap.querySelector(".addLabel"),
-    addListForm = listAddWrap.querySelector("form"),
-    addListInput =addListForm.querySelector("input"),
-    addListClose = addListForm.querySelector(".close");
+    addListForm = document.querySelector(".addList"),
+    addListInput =document.querySelector(".addListTitle"),
+    addListClose = document.querySelector(".addListClose");
 
 // 카드 추가를 위한 코드
 
@@ -126,7 +129,7 @@ function listSubmit(event) {
     addListInput.value = "";
     addListForm.style.display = 'none';
     listAddLabel.style.display = 'block';
-
+    
     cardAddLabel.addEventListener("click", clickCardAddLabelEvent);
     addCardForm.addEventListener("submit", cardSubmit);
     addCardClose.addEventListener("click", clickAddCardCloseEvent);
@@ -144,9 +147,11 @@ function init() {
     listAddLabel.addEventListener("click", clickListAddLabelEvent);
     addListForm.addEventListener("submit", listSubmit);
     addListClose.addEventListener("click", clickAddListCloseEvent);
+    /*
     cardAddLabel.addEventListener("click", clickCardAddLabelEvent);
     addCardForm.addEventListener("submit", cardSubmit);
     addCardClose.addEventListener("click", clickAddCardCloseEvent);
+    */
 }
 
 init();
