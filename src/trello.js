@@ -36,6 +36,7 @@ function clickCardAddLabelEvent(event) {
 }
 
 // form에 입력한 내용을 card에 add
+var i = 0;
 function cardSubmit(event) {
     event.preventDefault();
     const clickedItem = event.target;
@@ -44,12 +45,19 @@ function cardSubmit(event) {
     const clickedCardWrap = clickedItem.parentNode.parentNode.querySelector(".cardWrap");
     const currentValue = clickedInput.value;
     const div = document.createElement("div");
+    div.id = "card" + i++;  // 동적으로 id를 부여
     div.className = "cardContent";
     div.innerText = currentValue;
+    div.draggable = "true";  // drag&drop 구현을 위한 draggable 속성 부여
     clickedCardWrap.appendChild(div);
     clickedInput.value ="";
     clickedItem.style.display = "none";
     clickedAddLabel.style.display = "block";
+
+    // card 관련 drag & drop 이벤트
+    div.addEventListener("dragstart", onDragStart);
+    clickedCardWrap.addEventListener("dragover", onDragOver);
+    clickedCardWrap.addEventListener("drop", (e) => onDrop(e, clickedCardWrap));
 }
 
 // addCardBtn 옆 x 누를 시 내용 지우고 form을 닫고 원래 addLabel을 노출
@@ -74,12 +82,15 @@ function clickListAddLabelEvent(event) {
 }
 
 // form에 입력한 내용을 list에 add
+var j = 0;
 function listSubmit(event) {
     event.preventDefault();
     const currentValue = addListInput.value;
     
     list = document.createElement("div");
+    list.id = "list" + j++;  // 동적으로 id를 부여
     list.className = "list";
+    list.draggable = "true";  // drag&drop 구현을 위한 draggable 속성 부여
     listTitleWrap = document.createElement("div");
     listTitleWrap.className = "listTitleWrap";
     title = document.createElement("div");
@@ -130,9 +141,15 @@ function listSubmit(event) {
     addListForm.style.display = 'none';
     listAddLabel.style.display = 'block';
     
+    // card 관련 click, submit 이벤트
     cardAddLabel.addEventListener("click", clickCardAddLabelEvent);
     addCardForm.addEventListener("submit", cardSubmit);
     addCardClose.addEventListener("click", clickAddCardCloseEvent);
+
+    // list 관련 drag & drop 이벤트
+    list.addEventListener("dragstart", onDragStart);
+    listWrap.addEventListener("dragover", onDragOver);
+    listWrap.addEventListener("drop", (e) => onDrop(e, listWrap));
 }
 
 // addListBtn 옆 x 누를 시 내용 지우고 form을 닫고 원래 addLabel을 노출
@@ -142,6 +159,24 @@ function clickAddListCloseEvent(event) {
     addListForm.style.display = 'none';
     listAddLabel.style.display = 'block';
 }
+
+// .list와 .cardContent 의 drag and drop 구현을 위한 코드
+
+function onDragOver(event) {
+    event.preventDefault();
+}
+
+function onDragStart(event) {
+    event.dataTransfer.setData("text/plain", event.target.id);
+}
+
+function onDrop(event, wrap) {
+    event.preventDefault();
+    let data = event.dataTransfer.getData("text");
+    wrap.appendChild(document.getElementById(data));
+    event.dataTransfer.clearData();
+}
+
 
 function init() {
     listAddLabel.addEventListener("click", clickListAddLabelEvent);

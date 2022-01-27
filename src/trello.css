@@ -40,6 +40,7 @@ input:active {
     vertical-align: top;
     margin-right: 15px;
     margin-bottom: 35px;
+    cursor: pointer;
 }
 
 .listTitleWrap {
@@ -95,6 +96,7 @@ input:active {
     word-wrap: normal;
     overflow: hidden;
     box-shadow: 1px 1px 1px 0px rgb(186, 186, 186);
+    cursor: pointer;
 }
 
 .cardAddWrap .addLabel {
