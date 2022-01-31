@@ -56,8 +56,8 @@ function cardSubmit(event) {
 
     // card 관련 drag & drop 이벤트
     div.addEventListener("dragstart", onDragStart);
-    cardWrap.addEventListener("dragover", onDragOver);
-    cardWrap.addEventListener("drop", (e) => onDrop(e, cardWrap));
+    clickedCardWrap.addEventListener("dragover", onDragOver);
+    clickedCardWrap.addEventListener("drop", onDrop);
 }
 
 // addCardBtn 옆 x 누를 시 내용 지우고 form을 닫고 원래 addLabel을 노출
@@ -149,7 +149,7 @@ function listSubmit(event) {
     // list 관련 drag & drop 이벤트
     list.addEventListener("dragstart", onDragStart);
     listWrap.addEventListener("dragover", onDragOver);
-    listWrap.addEventListener("drop", (e) => onDrop(e, listWrap));
+    listWrap.addEventListener("drop", onDrop);
 }
 
 // addListBtn 옆 x 누를 시 내용 지우고 form을 닫고 원래 addLabel을 노출
@@ -170,10 +170,25 @@ function onDragStart(event) {
     event.dataTransfer.setData("text/plain", event.target.id);
 }
 
-function onDrop(event, wrap) {
+function onDrop(event) {
     event.preventDefault();
+    event.stopPropagation();
     let data = event.dataTransfer.getData("text");
-    wrap.appendChild(document.getElementById(data));
+    data = document.getElementById(data);
+    let target = null;
+    if (data.className === "cardContent") {
+        target =
+            event.target.className === "cardWrap"
+            ? event.target
+            : event.target.closest(".cardWrap");
+    }
+    else if (data.className === "list") {
+        target =
+            event.target.className === "listWrap"
+            ? event.target
+            : event.target.closest(".listWrap");
+    } else return;
+    target.appendChild(data);
     event.dataTransfer.clearData();
 }
 
