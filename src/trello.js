@@ -192,16 +192,10 @@ function onDrop(event) {
     event.dataTransfer.clearData();
 }
 
-
 function init() {
     listAddLabel.addEventListener("click", clickListAddLabelEvent);
     addListForm.addEventListener("submit", listSubmit);
     addListClose.addEventListener("click", clickAddListCloseEvent);
-    /*
-    cardAddLabel.addEventListener("click", clickCardAddLabelEvent);
-    addCardForm.addEventListener("submit", cardSubmit);
-    addCardClose.addEventListener("click", clickAddCardCloseEvent);
-    */
 }
 
 init();
