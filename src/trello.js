@@ -57,6 +57,7 @@ function cardSubmit(event) {
     // card 관련 drag & drop 이벤트
     div.addEventListener("dragstart", onDragStart);
     clickedCardWrap.addEventListener("dragover", onDragOver);
+    clickedCardWrap.addEventListener("dragenter", onDragEnter);
     clickedCardWrap.addEventListener("drop", onDrop);
 }
 
@@ -149,6 +150,7 @@ function listSubmit(event) {
     // list 관련 drag & drop 이벤트
     list.addEventListener("dragstart", onDragStart);
     listWrap.addEventListener("dragover", onDragOver);
+    listWrap.addEventListener("dragenter", onDragEnter);
     listWrap.addEventListener("drop", onDrop);
 }
 
@@ -162,12 +164,21 @@ function clickAddListCloseEvent(event) {
 
 // .list와 .cardContent 의 drag and drop 구현을 위한 코드
 
+let drag = null;
+let dragNext = null;
+
 function onDragOver(event) {
     event.preventDefault();
 }
 
+function onDragEnter(event) {
+    event.preventDefault();
+    dragNext = event.target.nextSibling;
+}
+
 function onDragStart(event) {
     event.dataTransfer.setData("text/plain", event.target.id);
+    drag = event.target;
 }
 
 function onDrop(event) {
@@ -176,19 +187,32 @@ function onDrop(event) {
     let data = event.dataTransfer.getData("text");
     data = document.getElementById(data);
     let target = null;
+    let next = null;
     if (data.className === "cardContent") {
         target =
             event.target.className === "cardWrap"
             ? event.target
             : event.target.closest(".cardWrap");
+        next =
+            dragNext.className === "cardContent"
+            ? dragNext
+            : dragNext.closest(".cardContent");
     }
     else if (data.className === "list") {
         target =
             event.target.className === "listWrap"
             ? event.target
             : event.target.closest(".listWrap");
+        next = 
+            dragNext.className === "list"
+            ? dragNext
+            : dragNext.closest(".list");
     } else return;
-    target.appendChild(data);
+    if (!!dragNext) {
+        target.insertBefore(data, next);
+    } else {
+        target.appendChild(data);
+    }
     event.dataTransfer.clearData();
 }
 
